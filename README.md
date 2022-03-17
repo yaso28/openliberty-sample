@@ -72,3 +72,7 @@ pull
 ```bash
 docker image pull yaso28/openliberty-sample-ui:[tag]
 ```
+
+## Kubernetesにデプロイ
+
+詳細は[こちら](./kubernetes/)

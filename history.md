@@ -4,6 +4,7 @@
 - [UIプロジェクト新規作成](#uiプロジェクト新規作成)
 - [空のトップページを実装](#空のトップページを実装)
 - [UIのDockerイメージを縮小](#uiのdockerイメージを縮小)
+- [UIをKubernetesにデプロイ](#uiをkubernetesにデプロイ)
 
 ## UIプロジェクト新規作成
 
@@ -30,3 +31,7 @@
   - `ui/build-minimal.sh`
 - 下記ファイルを削除
   - `ui/Dockerfile`
+
+## UIをKubernetesにデプロイ
+
+- `kubernetes/ui.yaml`を追加

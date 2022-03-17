@@ -1,0 +1,52 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openliberty-sample-ui
+  labels:
+    app: openliberty-sample-ui
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: openliberty-sample-ui
+  template:
+    metadata:
+      labels:
+        app: openliberty-sample-ui
+    spec:
+      containers:
+        - name: openliberty-sample-ui
+          image: yaso28/openliberty-sample-ui:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 9080
+              protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: openliberty-sample-ui
+spec:
+  selector:
+    app: openliberty-sample-ui
+  ports:
+    - protocol: TCP
+      port: 9080
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: openliberty-sample-ui
+spec:
+  ingressClassName: nginx
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: openliberty-sample-ui
+                port:
+                  number: 9080
