@@ -1,7 +1,22 @@
+<!-- omit in toc -->
 # Open Liberty サンプルWebアプリケーション
+
+ファイル・ディレクトリ
 
 - [開発履歴](./history.md)
 - [UIソースコード](./ui/)
+
+メニュー
+
+- [開発環境](#開発環境)
+- [ローカルで実行](#ローカルで実行)
+- [Dockerイメージ作成](#dockerイメージ作成)
+- [Dockerコンテナ実行](#dockerコンテナ実行)
+- [Dockerイメージpush/pull](#dockerイメージpushpull)
+- [Kubernetesにデプロイ](#kubernetesにデプロイ)
+- [SAML認証について](#saml認証について)
+  - [要求規則の不足](#要求規則の不足)
+  - [ループ現象](#ループ現象)
 
 ## 開発環境
 
@@ -76,3 +91,27 @@ docker image pull yaso28/openliberty-sample-ui:[tag]
 ## Kubernetesにデプロイ
 
 詳細は[こちら](./kubernetes/)
+
+## SAML認証について
+
+### 要求規則の不足
+
+当初は下記のエラーが発生。
+
+```
+Microsoft.IdentityServer.Protocols.Saml.InvalidNameIdPolicyException: MSIS7070: SAML 要求に、発行されたトークンでは要件が満たされない NameIDPolicy が含まれていました。要求された NameIDPolicy: AllowCreate: False Format: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress SPNameQualifier: 。実際の NameID プロパティ: Format: , NameQualifier:  SPNameQualifier: , SPProvidedId: 。
+```
+
+ADFS2019にて、要求規則として下記2つを追加したところ、正常にサインインできるようになりました。
+
+- LDAP属性（User-Principal-Name -> 名前ID）
+- 下記のカスタム規則
+
+```
+c:[Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"]
+ => issue(Type = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier", Issuer = c.Issuer, OriginalIssuer = c.OriginalIssuer, Value = c.Value, ValueType = c.ValueType, Properties["http://schemas.xmlsoap.org/ws/2005/05/identity/claimproperties/format"] = "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress");
+```
+
+### ループ現象
+
+KubernetesにデプロイしてPodを複数にしたところ、ADFSサインイン後にアプリとADFSのURLをループする不具合が発生。Podを1つにしたところループ現象は無くなった。

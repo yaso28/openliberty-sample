@@ -12,6 +12,14 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/cont
 
 ## UI
 
+デプロイ
+
 ```bash
 kubectl apply -f ui.yaml
+```
+
+Pod再作成（Dockerイメージ更新後に実行）
+
+```bash
+kubectl rollout restart deployment/openliberty-sample-ui
 ```
