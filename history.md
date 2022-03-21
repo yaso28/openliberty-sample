@@ -5,6 +5,7 @@
 - [空のトップページを実装](#空のトップページを実装)
 - [UIのDockerイメージを縮小](#uiのdockerイメージを縮小)
 - [UIをKubernetesにデプロイ](#uiをkubernetesにデプロイ)
+- [SAML2.0設定をUIに追加](#saml20設定をuiに追加)
 
 ## UIプロジェクト新規作成
 
@@ -35,3 +36,15 @@
 ## UIをKubernetesにデプロイ
 
 - `kubernetes/ui.yaml`を追加
+
+## SAML2.0設定をUIに追加
+
+- `ui/pom.xml`を編集
+- `ui/src/main/liberty/config/server.xml`を編集
+- `ui/src/main/webapp/WEB-INF/web.xml`を編集
+- ADFS2019の`https://<FQDN>/FederationMetadata/2007-06/FederationMetadata.xml`をダウンロードして` ui/src/main/liberty/config/resources/security/idpMetadata.xml`に移動
+- `https://localhost:9443/ibm/saml20/defaultSP/samlmetadata`にアクセスして`spMetadata.xml`をダウンロード
+- ダウンロードした`spMetadata.xml`をADFSの証明書利用者信頼にインポート
+- インポートしたADFSの証明書利用者信頼に要求規則を追加（MSIS7070エラー対応）
+  - UPNをNameIDに変換
+  - NameIDのフォーマットとして`urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress`を指定
