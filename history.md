@@ -6,6 +6,7 @@
 - [UIのDockerイメージを縮小](#uiのdockerイメージを縮小)
 - [UIをKubernetesにデプロイ](#uiをkubernetesにデプロイ)
 - [SAML2.0設定をUIに追加](#saml20設定をuiに追加)
+- [UIにページとAPIを追加](#uiにページとapiを追加)
 
 ## UIプロジェクト新規作成
 
@@ -48,3 +49,21 @@
 - インポートしたADFSの証明書利用者信頼に要求規則を追加（MSIS7070エラー対応）
   - UPNをNameIDに変換
   - NameIDのフォーマットとして`urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress`を指定
+
+## UIにページとAPIを追加
+
+- JSONライブラリをインストール
+  - `ui/pom.xml`を編集
+- 情報提供クラスを実装
+  - `ui/src/main/java/com/yaso/sample/InfoBase.java`を追加
+  - `ui/src/main/java/com/yaso/sample/UiInfo.java`を追加
+  - `ui/src/main/java/com/yaso/sample/UserInfo.java`を追加
+- ページを追加
+  - `ui/src/main/webapp/index.jsp`を追加
+  - `ui/src/main/webapp/user.jsp`を追加
+  - `ui/src/main/webapp/index.html`を削除
+- APIを追加
+  - `ui/src/main/java/com/yaso/sample/rest/RestInfo.java`を追加
+- `ui/src/main/webapp/WEB-INF/web.xml`を編集
+  - ページのURLを設定
+  - SAML認証が必要なURLを変更
