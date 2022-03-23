@@ -7,7 +7,7 @@
     <title>SAMPLE UI</title>
   </head>
   <body>
-    <h1>USER - SAMPLE UI</h1>
+    <h1>HOME - SAMPLE UI</h1>
 
     <h2>UI</h2>
     <p style="white-space: pre-wrap;"><%=uiInfo%></p>

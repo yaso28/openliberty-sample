@@ -114,4 +114,6 @@ c:[Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier
 
 ### ループ現象
 
-KubernetesにデプロイしてPodを複数にしたところ、ADFSサインイン後にアプリとADFSのURLをループする不具合が発生。Podを1つにしたところループ現象は無くなった。
+KubernetesにデプロイしてPodを複数にしたところ、ADFSサインイン後にアプリとADFSのURLをループする不具合が発生。Podを1つにしたところループ現象は発生しない。
+
+Ingress(NGINX Ingress Controllerを使用)にaffinityを設定して、同じセッションの通信は同じPodに割り振るようにしたところ、ループ現象は発生せず正常に動作するようになりました。
