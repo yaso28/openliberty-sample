@@ -7,6 +7,7 @@
 - [UIをKubernetesにデプロイ](#uiをkubernetesにデプロイ)
 - [SAML2.0設定をUIに追加](#saml20設定をuiに追加)
 - [UIにページとAPIを追加](#uiにページとapiを追加)
+- [UIを改変](#uiを改変)
 
 ## UIプロジェクト新規作成
 
@@ -67,3 +68,14 @@
 - `ui/src/main/webapp/WEB-INF/web.xml`を編集
   - ページのURLを設定
   - SAML認証が必要なURLを変更
+
+## UIを改変
+
+- microprofileとjsonライブラリを削除（warファイルのサイズ縮小のため）
+  - `ui/pom.xml`を編集
+- ページを改変（下記ファイルを編集）
+  - `ui/src/main/java/com/yaso/sample/InfoBase.java`
+  - `ui/src/main/java/com/yaso/sample/UiInfo.java`
+  - `ui/src/main/java/com/yaso/sample/UserInfo.java`
+  - `ui/src/main/webapp/index.jsp`
+  - `ui/src/main/webapp/user.jsp`

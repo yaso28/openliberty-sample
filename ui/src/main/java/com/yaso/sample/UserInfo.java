@@ -3,6 +3,8 @@ package com.yaso.sample;
 import com.ibm.websphere.security.auth.WSSubject;
 import com.ibm.websphere.security.saml2.Saml20Token;
 import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
 public class UserInfo extends InfoBase {
 
@@ -17,5 +19,11 @@ public class UserInfo extends InfoBase {
 
   public String getNameId() {
     return this.nameId;
+  }
+
+  public String toHtml() {
+    Map<String, Object> map = new HashMap<>();
+    map.put("nameId", this.nameId);
+    return this.makeHtml(map);
   }
 }

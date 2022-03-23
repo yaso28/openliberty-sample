@@ -1,5 +1,8 @@
 package com.yaso.sample;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class UiInfo extends InfoBase {
 
   private String hostname;
@@ -14,5 +17,11 @@ public class UiInfo extends InfoBase {
 
   public String getHostname() {
     return this.hostname;
+  }
+
+  public String toHtml() {
+    Map<String, Object> map = new HashMap<>();
+    map.put("hostname", this.hostname);
+    return this.makeHtml(map);
   }
 }

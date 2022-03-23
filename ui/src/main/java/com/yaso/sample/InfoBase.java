@@ -1,13 +1,21 @@
 package com.yaso.sample;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
+import java.util.Map;
 
 abstract class InfoBase {
 
-  public String toJson() throws Exception {
-    ObjectMapper mapper = new ObjectMapper();
-    mapper.enable(SerializationFeature.INDENT_OUTPUT);
-    return mapper.writeValueAsString(this);
+  protected String makeHtml(Map<String, Object> map) {
+    StringBuilder sb = new StringBuilder();
+    sb.append("<dl>");
+    map.forEach((key, value) -> {
+      sb.append("<dt>");
+      sb.append(key);
+      sb.append("</dt>");
+      sb.append("<dd>");
+      sb.append(value);
+      sb.append("</dd>");
+    });
+    sb.append("</dl>");
+    return sb.toString();
   }
 }
