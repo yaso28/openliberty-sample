@@ -8,11 +8,12 @@
 - [SAML2.0設定をUIに追加](#saml20設定をuiに追加)
 - [UIにページとAPIを追加](#uiにページとapiを追加)
 - [UIを改変](#uiを改変)
+- [EJBプロジェクト新規作成](#ejbプロジェクト新規作成)
 
 ## UIプロジェクト新規作成
 
 - [こちら](https://openliberty.io/start/)のサイトでプロジェクト生成
-  - 入力内容は[こちら](./generate-project.png)
+  - 入力内容は[こちら](./generate-project-ui.png)
 - ダウンロードしたzipファイルを解凍して[ui](./ui/)に移動
 
 ## 空のトップページを実装
@@ -79,3 +80,9 @@
   - `ui/src/main/java/com/yaso/sample/UserInfo.java`
   - `ui/src/main/webapp/index.jsp`
   - `ui/src/main/webapp/user.jsp`
+
+## EJBプロジェクト新規作成
+
+- [こちら](https://openliberty.io/start/)のサイトでプロジェクト生成
+  - 入力内容は[こちら](./generate-project-ejb.png)
+- ダウンロードしたzipファイルを解凍して[ejb](./ejb/)に移動
