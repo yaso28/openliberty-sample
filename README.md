@@ -18,6 +18,7 @@
 - [SAML認証について](#saml認証について)
   - [要求規則の不足](#要求規則の不足)
   - [ループ現象](#ループ現象)
+- [EJBについて](#ejbについて)
 
 ## 開発環境
 
@@ -118,3 +119,7 @@ c:[Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier
 KubernetesにデプロイしてPodを複数にしたところ、ADFSサインイン後にアプリとADFSのURLをループする不具合が発生。Podを1つにしたところループ現象は発生しない。
 
 Ingress(NGINX Ingress Controllerを使用)にaffinityを設定して、同じセッションの通信は同じPodに割り振るようにしたところ、ループ現象は発生せず正常に動作するようになりました。
+
+## EJBについて
+
+`/InfoService?WSDL`でWebサービスの定義を参照可能

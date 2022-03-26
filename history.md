@@ -9,6 +9,7 @@
 - [UIにページとAPIを追加](#uiにページとapiを追加)
 - [UIを改変](#uiを改変)
 - [EJBプロジェクト新規作成](#ejbプロジェクト新規作成)
+- [EJBにWebサービスを実装](#ejbにwebサービスを実装)
 
 ## UIプロジェクト新規作成
 
@@ -86,3 +87,9 @@
 - [こちら](https://openliberty.io/start/)のサイトでプロジェクト生成
   - 入力内容は[こちら](./generate-project-ejb.png)
 - ダウンロードしたzipファイルを解凍して[ejb](./ejb/)に移動
+
+## EJBにWebサービスを実装
+
+- `src/main/java/com/yaso/sample/ejb/RestApplication.java`を削除
+- `src/main/java/com/yaso/sample/ejb/Info.java`を追加
+- `src/main/liberty/config/server.xml`を編集
