@@ -27,12 +27,30 @@
 
 ## ローカルで実行
 
+`git clone`したのち、ポート番号の設定ファイルをコピーします。
+
+```bash
+cp ui/src/main/liberty/config/bootstrap.properties.example ui/src/main/liberty/config/bootstrap.properties
+cp ejb/src/main/liberty/config/bootstrap.properties.example ejb/src/main/liberty/config/bootstrap.properties
+```
+
+コピーした`bootstrap.properties`ファイルを必要に応じて編集して、ポート番号を設定します。
+
+EJBを実行します。
+
+```bash
+cd ejb
+./mvnw liberty:run
+```
+
+UIを実行します。
+
 ```bash
 cd ui
 ./mvnw liberty:run
 ```
 
-上記コマンド実行後、ブラウザで `http://localhost:9080` にアクセスします。
+上記コマンド実行後、ブラウザで `http://localhost:{UI_HTTP_PORT}` にアクセスします。
 
 ## Dockerイメージ作成
 

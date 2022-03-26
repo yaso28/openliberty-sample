@@ -10,6 +10,7 @@
 - [UIを改変](#uiを改変)
 - [EJBプロジェクト新規作成](#ejbプロジェクト新規作成)
 - [EJBにWebサービスを実装](#ejbにwebサービスを実装)
+- [UIとEJBのポートを変数化](#uiとejbのポートを変数化)
 
 ## UIプロジェクト新規作成
 
@@ -93,3 +94,19 @@
 - `src/main/java/com/yaso/sample/ejb/RestApplication.java`を削除
 - `src/main/java/com/yaso/sample/ejb/Info.java`を追加
 - `src/main/liberty/config/server.xml`を編集
+
+## UIとEJBのポートを変数化
+
+- 変数定義（下記ファイルを追加）
+  - `ui/src/main/liberty/config/bootstrap.properties`
+  - `ui/src/main/liberty/config/bootstrap.properties.example`
+  - `ejb/src/main/liberty/config/bootstrap.properties`
+  - `ejb/src/main/liberty/config/bootstrap.properties.example`
+- 変数を反映（下記ファイルを編集）
+  - `ui/src/main/liberty/config/server.xml`
+  - `ejb/src/main/liberty/config/server.xml`
+- GitおよびDockerで変数定義ファイルを無視（下記ファイルを編集）
+  - `ui/.gitignore`
+  - `ui/.dockerignore`
+  - `ejb/.gitignore`
+  - `ejb/.dockerignore`
